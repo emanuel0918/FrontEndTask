@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Template from the Official Vue Documentation-->
+    <meta charset="UTF-8" />
+    <title>Advanced filter</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="container">
+        <!-- Sector tabs -->
+        <div class="row">
+            <!-- Added some dinamyc array for the tabs-->
+            <div  v-for="tab in tabs"  class="tabs" :key="tab.id">
+              <h4 class="tabs-font">{{ tab.label }}</h4>
+            </div>
+        </div>
+      <div class="row">
+        <!-- directive for hiding these container if sector tab is selected-->
+        <div v-show="sectorSelected">
+            <div class="sector-container">
+            <div class="row">
+                <p>{{ search_label }}</p>
+            </div>
+            <div class="row">
+                <p>{{ checkbox_label }}</p>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import App -->
+    <script src="./js/main.js"></script>
+
+    <!-- Mount App -->
+    <script>
+      const mountedApp = advancedFilter.mount('#container')
+    </script>
+  </body>
+</html>
