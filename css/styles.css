@@ -1,0 +1,57 @@
+/* Apply style to all page*/
+html , body{
+    /* delete the margin in html and body tag*/
+    margin: 0px auto;
+}
+#container {
+    /* add this border to the container */
+    height: 100%;
+    width: 100%;
+    float: left;
+    border-left: 15px solid #070747;
+    border-right: 15px solid #070747;
+    border-top: 5px solid #070747;
+    border-bottom: 5px solid #070747;
+    box-sizing: border-box;
+}
+
+.row {
+    /*class for the grid elements*/
+    margin: 0% auto;
+    width: 100%;
+    float: left;
+}
+
+/*
+-------- Tabs ---------
+*/
+
+.tabs-font {
+    font-family: "Lucida Console", "Courier New", monospace
+}
+
+.tabs {
+    /* style for the tabs*/
+    width: 20%;
+    float: left;
+    /* Font for being not selected*/
+    background-color: #c3fac1;
+    /* Font for being selected*/
+    /*background-color: #84da81;*/
+    text-align: center;
+    color: #242424;
+}
+
+.tabs:hover {
+    /*add an event for the on hover*/
+    background-color: #9af097;
+    /* change the cursor to the pointer on the event */
+    cursor: pointer;
+}
+
+/* ------ Filter -----------*/
+
+.sector-container {
+    padding: 30px;
+    box-sizing: border-box;
+}
