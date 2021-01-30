@@ -2,7 +2,11 @@
 html , body{
     /* delete the margin in html and body tag*/
     margin: 0px auto;
+    height: 100%;
+    width: 100%;
 }
+
+/* This Div is ALL in the content*/
 #container {
     /* add this border to the container */
     height: 100%;
@@ -15,10 +19,24 @@ html , body{
     box-sizing: border-box;
 }
 
+#form-advanced-filter {
+    margin: 0px auto;
+    width: 100%;
+    height: 100%;
+    float: left;
+}
 .row {
     /*class for the grid elements*/
     margin: 0% auto;
+    height: 100%;
     width: 100%;
+    float: left;
+}
+
+
+.header{
+    width: 100%;
+    height: 10%;
     float: left;
 }
 
@@ -26,20 +44,53 @@ html , body{
 -------- Tabs ---------
 */
 
-.tabs-font {
-    font-family: "Lucida Console", "Courier New", monospace
-}
 
 .tabs {
     /* style for the tabs*/
+    height: 100%;
     width: 20%;
     float: left;
+    /*A font family for the tab labels*/
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-align: center;
+    /* display tabs label in 2 rows */
+    /*
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 20px;
+    max-height:100%;
+    */
+    /* border in the tabs */
+    /*
+    box-sizing: border-box;
+    border-left: 1px solid #777777;
+    border-right: 1px solid #777777;
+    border-top: 1px solid #777777;
+    border-bottom: 1px solid #777777;
+    box-sizing: border-box;
+    */
+}
+
+/* fix 2 rows*/
+.tabs p {
+    font-size: 15px;
+    font-weight: bold;
+    color: #242424;
+}
+
+.tabs.unselected {
     /* Font for being not selected*/
     background-color: #c3fac1;
+    
+}
+
+.tabs.selected {
     /* Font for being selected*/
-    /*background-color: #84da81;*/
-    text-align: center;
-    color: #242424;
+    background-color: #84da81;
+
 }
 
 .tabs:hover {
@@ -51,7 +102,168 @@ html , body{
 
 /* ------ Filter -----------*/
 
-.sector-container {
+.container-sector {
+    /* Main Content of the Advanced Filter */
+    /**/
+    margin: 0% auto;
+    width: 100%;
+    /* Measure the size of this window */
+    height: 80%;
+    float: left;
     padding: 30px;
     box-sizing: border-box;
+}
+
+/*------ STYLE FOR TEXT IN THE FILTER -------*/
+
+
+/*Added a line in the middle height*/
+.container-sector p {
+    width: 100%; 
+    text-align: left; 
+    border-bottom: 1px solid #1d1d1d; 
+    line-height: 1px;
+    color: #1d1d1d;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+.container-sector p span {
+    background:#ffffff; 
+    padding:0 10px; 
+}
+
+.search-tool {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    padding-left: 15px;
+}
+.search-textbox {
+    /* This specified width is for patching to reduce it */
+    width: 97%;
+    /* style for the text typed*/
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+}
+
+/* This part is going to be responsive*/
+
+.filter-list {
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+ul {
+    padding-left: 0;
+}
+
+/*---------for desktop ---------*/
+/* width >= 850 && width <= 2000*/
+@media only screen and (max-width: 2000px) {
+    /* Display list in 3 columns */
+    ul {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
+/*---------for mobiles ------*/
+/* width >= 850 && width <= 2000*/
+@media only screen and (max-width: 750px) {
+    /* Display list in 2 columns */
+    ul {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+@media only screen and (max-width: 500px) {
+    /* Display list in 3 columns */
+    ul {
+        /* Displaying one element in the list at a time*/
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+}
+
+li {
+    /* adding some style to the elements in the list*/
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 11x;
+    /* remove the marker in the list */
+    list-style-type: none;
+    
+}
+
+.list-checkbox {
+    height: 100%;
+    width: 9%;
+    float: left;
+}
+
+.list-label {
+    height: 100%;
+    width: 90%;
+    float: left;
+}
+
+/* Displaying the buttons */
+
+.footer {
+    width: 100%;
+    height: 8%;
+    float: left;;
+    box-sizing: border-box;
+}
+
+/* Display the buttons at the right */
+
+.right-button {
+    height: 100%;
+    width: 40%;
+    float: left;
+    padding-left: 60%;
+
+}
+
+/* Container for the buttons */
+.container-btn {
+    height: 100%;
+    width: 33%;
+    float: left;
+    padding: 0 0 0 2%;
+    box-sizing: border-box;
+}
+
+/* general button style */
+[class*="btn-"] {
+    height: 90%;
+    width: 100%;
+    padding: 5% 0;
+}
+
+
+/* APPLY BUTTON */
+.btn-apply {
+    border: none;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+/* CLEAR BUTTON */
+.btn-clear {
+    background-color: #ffffff;
+    color: #4CAF50;
+    border-radius: 5px;
+    border: 2px solid #4CAF50;
+}
+
+/* CANCEL BUTTON */
+.btn-cancel {
+    border: none;
+    background-color: #ffffff;
+    color: #4CAF50;
+    border-radius: 5px;
 }
