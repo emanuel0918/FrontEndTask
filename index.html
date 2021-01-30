@@ -11,26 +11,77 @@
   </head>
   <body>
     <div id="container">
-        <!-- Sector tabs -->
-        <div class="row">
-            <!-- Added some dinamyc array for the tabs-->
-            <div  v-for="tab in tabs"  class="tabs" :key="tab.id">
-              <h4 class="tabs-font">{{ tab.label }}</h4>
-            </div>
-        </div>
-      <div class="row">
-        <!-- directive for hiding these container if sector tab is selected-->
-        <div v-show="sectorSelected">
-            <div class="sector-container">
+        <!-- Form for submitting the info -->
+        <!--<form id="form-advanced-filter" autocomplete="off" action="" method="GET" width="100%" height="100%">-->
+        <form id="form-advanced-filter" autocomplete="off" action="" method="GET">
+          <!-- Sector tabs -->
+          <div class="header">
             <div class="row">
-                <p>{{ search_label }}</p>
+              <!-- Added some dinamyc array for the tabs-->
+              <!-- And added an event for each tab which display de filter -->
+              <div
+              v-for="tab in tabs"
+              class="tabs"
+              :key="tab.id"
+              ref="barraMenu"
+              v-on:click="tabSelect(tab.id)"
+              :class="{'selected': tabSelected == tab.id, 'unselected': tabSelected != tab.id}"
+            >
+              <p>{{ tab.label }}</p>
+            </div>
+            </div>
+          </div>
+        <div class="container-sector">
+          <!-- directive for hiding these container if sector tab is selected-->
+          <div v-show="sectorSelected">
+            <div class="row">
+                <p><span>{{ search_label }}</span></p>
             </div>
             <div class="row">
-                <p>{{ checkbox_label }}</p>
+              <div class="search-tool">
+                <input type="text" class="search-textbox" />
+              </div>
             </div>
+            <div class="row">
+                <p><span>{{ checkbox_label }}</span></p>
             </div>
+            <div class="row">
+              <div class="filter-list">
+                <ul>
+                  <div class="row">
+                    <li v-for="industry in industries">
+                      <div class="list-checkbox">
+                        <input
+                        type="checkbox"
+                        :key="industry.id" 
+                      />
+                      </div>
+                      <div class="list-label">
+                        {{ industry.label }}
+                      </div>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="footer">
+          <div class="row">
+            <div class="right-button">
+              <div class="container-btn">
+                <input type="button" class="btn-apply" value="APPLY"/>
+              </div>
+              <div class="container-btn">
+                <input type="button" class="btn-clear" value="CLEAR"/>
+              </div>
+              <div class="container-btn">
+                <input type="button" class="btn-cancel" value="CANCEL"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
 
     <!-- Import App -->
