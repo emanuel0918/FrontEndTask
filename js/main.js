@@ -44,7 +44,9 @@ const advancedFilter = Vue.createApp({
                 { id : 217, label : 'Aviation' },
                 { id : 218, label : 'Banking'}
             ],
+            // array for the industry checkboxes selected
             industriesSelected : [],
+            industryIndexSelected : [],
             // label
             checkbox_label: 'INDUSTRIES',
             // array containing the industries checkboxes
@@ -71,7 +73,8 @@ const advancedFilter = Vue.createApp({
             // text for the suggestions
             textTyped : '',
             // a tag matched
-            tagFound : false
+            tagFound : false,
+            userSubmitted : false
 
         }
     },
@@ -84,6 +87,15 @@ const advancedFilter = Vue.createApp({
                 case 12:
                     // if is the Sector tab by default
                     this.sectorSelected = true;
+                    // if the user clicked the button before
+                    if (this.userSubmitted) {
+                        // Reset the final output condition
+                        this.userSubmitted = false;
+                        // Reset the array of the checkboxes selected
+                        this.industriesSelected = [];
+                        // Reset the array with the indexes of the industries selected
+                        this.industryIndexSelected = [];
+                    }
                     break;
                 default:
                     // if is not the Sector tab dont show it
@@ -121,11 +133,40 @@ const advancedFilter = Vue.createApp({
                 // add in the array the checkbox by its id
                 this.industriesSelected.push(filterId);
             }
+            //console.log(this.industriesSelected);
         },
         btnApplySubmited () {
             // this.textTyped is the tag selected
             // this.industriesSelected is the array of the industries selected
-            console.log(this.industriesSelected);
+            for (i = 0; i < this.industriesSelected.length; i++) {
+                try {
+                    // assign the index selected
+                    n = this.industriesSelected[i];
+                    // check if it is valid
+                    if (n >= 301 && n <= 316) {
+                        // add the index in the array
+                        this.industryIndexSelected.push(n);
+                    }
+                } catch (error) {
+                    
+                }
+            }
+            // the tabSelected now is reset to 0
+            this.tabSelected = 0;
+
+            this.sectorSelected = false;
+
+            this.userSubmitted = true;
+
+            // Finally reset the form
+            this.$refs.formAdvancedFilter.reset();
+            //
+            //console.log(this.industryIndexSelected);
+        },
+        btnClearSubmited () {
+            // Clear the form with the ref formAdvancedFilter
+            this.$refs.formAdvancedFilter.reset();
+            this.tagFound = true;
         }
     }
 
