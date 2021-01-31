@@ -37,7 +37,7 @@ html , body{
 .header{
     width: 100%;
     /* The size in the window will be relative*/
-    height: 10%;
+    height: 50px;
     float: left;
 }
 
@@ -110,7 +110,7 @@ html , body{
     width: 100%;
     /* Measure the size of this window */
     /*This size is relative*/
-    height: 81%;
+    height: 500px;
     float: left;
     padding: 30px;
     box-sizing: border-box;
@@ -123,9 +123,9 @@ html , body{
 .container-sector p {
     width: 100%; 
     text-align: left; 
-    border-bottom: 1px solid #1d1d1d; 
+    border-bottom: 1px solid #797979; 
     line-height: 1px;
-    color: #1d1d1d;
+    color: #242424;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 }
@@ -134,23 +134,78 @@ html , body{
     padding:0 10px; 
 }
 
-.search-tool {
+/*------SEARCH IN THE TEXTBOX------*/
+.container-search-tool {
     width: 100%;
     position: relative;
     display: inline-block;
-    padding-left: 15px;
+    padding: 0 2px 0 15px;
+    box-sizing: border-box;
+    /*choose one column for the textbox and the suggestions*/
+    display: grid;
+    grid-template-columns: 1fr;
 }
 .search-textbox {
     /* This specified width is for patching to reduce it */
-    width: 97%;
+    width: 1fr;
     /* style for the text typed*/
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 17px;
+    font-size: 12px;
 }
 
+/* The suggestion div*/
+.container-autocomplete {
+    height: auto;
+    width: 97%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 23px;
+    margin-left: 15px;
+    box-sizing: border-box;
+    /* the div will float over the content with greater priority*/
+    z-index: 5;
+    /*a bug for the missing top border for the first suggest*/
+    /*border-top: 1px solid #7b7b7b;*/
+    /*border-radius: 2px;*/
+}
+
+/* Suggestion element*/
+.autocomplete {
+    width: 100%;
+    height: 20px;
+    padding-left: 5px;
+    box-sizing: border-box;
+    border-left: 1px solid #7b7b7b;
+    border-right: 1px solid #7b7b7b;
+    border-top: 0;
+    border-bottom: 1px solid #7b7b7b;
+    border-radius: 2px;
+    background-color: #ffffff;
+    /* Font of the suggestions */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size : 12px;
+    /* the div will float over the content with the greates priority*/
+    z-index: 9;
+}
+
+.autocomplete:hover {
+    width: 100%;
+    height: 20px;
+    padding-left: 5px;
+    box-sizing: border-box;
+    border-left: 1px solid #7b7b7b;
+    border-right: 1px solid #7b7b7b;
+    border-top: 0;
+    border-bottom: 1px solid #7b7b7b;
+    border-radius: 2px;
+    background-color: #7b7b7b;
+    color: #000000;
+    cursor: pointer;
+}
+
+
 /* This part is going to be responsive*/
-
-
 /*---------for mobiles ------*/
 @media (max-width: 630px) {
     /* width <= 630*/
@@ -162,7 +217,10 @@ html , body{
 		padding: 0 20px;
 		box-sizing: border-box;
 		display: grid;
-		grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
+        /* Add a scrollbar if the div overflows*/
+        overflow-x: auto;
+        overflow-y: auto;
 	}
 }
 /* width >= 630 && width <= 900*/
@@ -249,6 +307,8 @@ html , body{
 .list-label {
     height: 100%;
     float: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
 }
 
 
@@ -256,8 +316,8 @@ html , body{
 
 .footer {
     width: 100%;
-    /*This size is relative*/
-    height: 8%;
+    /*This size is not relative*/
+    height: 40px;
     float: left;;
     box-sizing: border-box;
 }
