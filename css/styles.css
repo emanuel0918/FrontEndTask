@@ -372,3 +372,22 @@ html , body{
     color: #4CAF50;
     border-radius: 5px;
 }
+
+
+/* Output for the user */
+
+
+.output-industries-tags-label {
+    padding-left: 50px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+}
+
+
+.output-industries-list-label {
+    height: 100%;
+    float: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+}
