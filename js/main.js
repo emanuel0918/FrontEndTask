@@ -34,7 +34,7 @@ const advancedFilter = Vue.createApp({
                 { id : 207, label : 'Packaging' },
                 { id : 208, label : 'Alternative proteins' },
                 { id : 209, label : 'Animal farming' },
-                { id : 210, label : 'Animal wlfare' },
+                { id : 210, label : 'Animal welfare' },
                 { id : 211, label : 'Apiculture' },
                 { id : 212, label : 'Apps' },
                 { id : 213, label : 'Aquaculture' },
@@ -44,6 +44,7 @@ const advancedFilter = Vue.createApp({
                 { id : 217, label : 'Aviation' },
                 { id : 218, label : 'Banking'}
             ],
+            industriesSelected : [],
             // label
             checkbox_label: 'INDUSTRIES',
             // array containing the industries checkboxes
@@ -66,24 +67,65 @@ const advancedFilter = Vue.createApp({
                 { id : 315, label : 'Transportation' },
                 { id : 316, label : 'Utilities (electricity, water, waste)' }
                 
-            ]
+            ],
+            // text for the suggestions
+            textTyped : '',
+            // a tag matched
+            tagFound : false
 
         }
     },
     methods: {
         tabSelect (tabId) {
-            this.tabSelected = tabId
+            // change the tab selected in the app
+            this.tabSelected = tabId;
+            // check which tab is the selected
             switch (tabId) {
                 case 12:
-                    this.sectorSelected = true
-                    break
+                    // if is the Sector tab by default
+                    this.sectorSelected = true;
+                    break;
                 default:
-                    this.sectorSelected = false
-                    break
+                    // if is not the Sector tab dont show it
+                    this.sectorSelected = false;
+                    break;
             }
             
         },
+        matchFound(tag) {
+            //console.log(this.textTyped);
+            // Clear the search
+            this.tagFound = true;
+            // Set the texTyped to the match
+            this.textTyped = tag;
+        },
         checkboxSelect (filterId) {
+            /*
+                add a flag if the checkbox selected
+                has been selected before
+            */
+            found = false;
+            // iterate over all the filters
+            size = this.industriesSelected.length;
+            for ( i = 0; i < size; i ++) {
+                if (this.industriesSelected[i] == filterId) {
+                    // delete the filter for unmark the checkbox
+                    delete this.industriesSelected[i];
+                    // mark that has been found before
+                    found = true;
+                    break;
+                }
+            }
+            // if has been found before just discard it
+            if (!found) {
+                // add in the array the checkbox by its id
+                this.industriesSelected.push(filterId);
+            }
+        },
+        btnApplySubmited () {
+            // this.textTyped is the tag selected
+            // this.industriesSelected is the array of the industries selected
+            console.log(this.industriesSelected);
         }
     }
 
