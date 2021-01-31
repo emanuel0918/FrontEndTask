@@ -46,22 +46,22 @@
                 <p><span>{{ checkbox_label }}</span></p>
             </div>
             <div class="row">
-              <div class="filter-list">
-                <ul>
-                  <div class="row">
-                    <li v-for="industry in industries">
-                      <div class="list-checkbox">
-                        <input
-                        type="checkbox"
-                        :key="industry.id" 
-                      />
-                      </div>
-                      <div class="list-label">
-                        {{ industry.label }}
-                      </div>
-                    </li>
+              <div class="container-filter-list">
+                <!-- This element fits in the grid with responsive media -->
+                <div
+                  class="filter-list-element"
+                  v-for="industry in industries"
+                >
+                  <div class="list-checkbox">
+                    <input
+                      type="checkbox"
+                      :key="industry.id"
+                    />
                   </div>
-                </ul>
+                  <div class="list-label">
+                    {{ industry.label }} 
+                  </div>
+                </div>
               </div>
             </div>
           </div>
