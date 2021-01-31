@@ -12,7 +12,7 @@
   <body>
     <div id="container">
         <!-- Form for submitting the info -->
-        <form id="form-advanced-filter" autocomplete="off" action="" method="GET">
+        <form id="form-advanced-filter" autocomplete="off" action="" method="GET" ref="formAdvancedFilter">
           <!-- Sector tabs -->
           <div class="header">
             <div class="row">
@@ -22,7 +22,6 @@
               v-for="tab in tabs"
               class="tabs"
               :key="tab.id"
-              ref="barraMenu"
               v-on:click="tabSelect(tab.id)"
               :class="{'selected': tabSelected == tab.id, 'unselected': tabSelected != tab.id}"
             >
@@ -85,10 +84,34 @@
               </div>
             </div>
           </div>
+          <div v-if="userSubmitted">
+            <div class="row">
+              <p><span>{{ search_label }}</span></p>
+            </div>
+            <div class="row">
+              <div  class="output-industries-tags-label">
+                {{ textTyped }}
+              </div>
+            </div>
+            <div class="row">
+                <p><span>{{ checkbox_label }}</span></p>
+            </div>
+            <div class="row">
+              <div class="container-filter-list">
+                <!-- This element fits in the grid with responsive media -->
+                <div
+                  class="output-industries-list-label"
+                  v-for="iS in industryIndexSelected"
+                >
+                  {{ industries[iS-301].label }}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <hr>
         <!-- This height size is not relative-->
-        <div class="footer">
+        <div v-show="sectorSelected" class="footer">
           <div class="row">
             <!-- The buttons are floating in a div with left padding -->
             <div class="right-button">
@@ -96,7 +119,7 @@
                 <input type="button" class="btn-apply" value="APPLY" @click="btnApplySubmited"/>
               </div>
               <div class="container-btn">
-                <input type="button" class="btn-clear" value="CLEAR"/>
+                <input type="button" class="btn-clear" value="CLEAR" @click="btnClearSubmited"/>
               </div>
               <div class="container-btn">
                 <input type="button" class="btn-cancel" value="CANCEL"/>
